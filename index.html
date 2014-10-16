@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+  <meta charset="UTF-8">
+  <title>Yo</title>
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+  <link rel="stylesheet" type="text/css" href="client/style.css">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,700,900,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=EB+Garamond' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <div ng-view>
+
+
+  <div ng-controller="WikiController">
+    <nav class="clear-after">
+      <h4 class="float-left third">NEWS SEARCH</h4>
+      <div class="float-right input">
+        <div class="float-right" >
+          <form>
+            <input type="text" ng-value="data.search" ng-model="data.search">
+            <button type="submit" ng-click="getMostPopular()">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <!-- {{ data.formatted }} -->
+    <ul class="clear-after">
+      <li class='fx-fade-normal' ng-repeat="data in data.formatted" ng-cloak>
+        <a ng-href='{{ data.url }}'>
+          <div class="text">
+            <h2>{{ data.headline }}</h2>
+            <p class="date">{{ data.pubdate }}</p>
+            <!-- <h4>{{ data.category }}</h4> -->
+            <p>{{ data.leadparagraph }}</p>
+          </div>
+          <div class="article">
+            <h2>View Article</h2>
+          </div>
+          <div class="background">
+            <div class="filter"></div>
+            <img ng-src="{{ data.photoUrl.url }}"></img>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+  <script src="lib/angular.js"></script>
+  <script src="client/services/ngFx.js"></script>
+  <script src="client/app.js"></script>
+  <script src="client/services/services.js"></script>
+  <script src="client/styling.js"></script>
+</body>
+</html>
